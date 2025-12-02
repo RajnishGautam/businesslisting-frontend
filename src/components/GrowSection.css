@@ -33,7 +33,7 @@
 
 /* email box wrapper */
 .emailBox {
-  width: 100%;
+  width: 90%;
   height: 74px;
   border: 2px solid #cfcfcf;
   border-radius: 14px;
@@ -65,7 +65,7 @@
 
 /* button inside */
 .insideBtn {
-  height: 85%;
+  height: 75%;
   padding: 0 32px;
   font-size: 18px;
   background: #1a73e8;
