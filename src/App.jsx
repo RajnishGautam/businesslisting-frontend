@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Browse from './pages/Browse';
@@ -10,6 +10,7 @@ import Signup from './components/Signup';
 import BusinessForm from './components/BusinessForm';
 import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
+import ProtectedRoute from './ProtectedRoute';
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
+
     if (token && userData) {
       setIsAuthenticated(true);
       setUser(JSON.parse(userData));
@@ -58,26 +60,6 @@ function App() {
     setShowLogin(true);
   };
 
-  const handleCloseLogin = () => {
-    setShowLogin(false);
-    setPrefilledEmail('');
-  };
-
-  const handleCloseSignup = () => {
-    setShowSignup(false);
-    setPrefilledEmail('');
-  };
-
-  const handleSwitchToSignup = () => {
-    setShowLogin(false);
-    setShowSignup(true);
-  };
-
-  const handleSwitchToLogin = () => {
-    setShowSignup(false);
-    setShowLogin(true);
-  };
-
   return (
     <Router>
       <div className="App">
@@ -91,18 +73,18 @@ function App() {
         
         {showLogin && (
           <Login 
-            onClose={handleCloseLogin}
+            onClose={() => setShowLogin(false)}
             onLogin={handleLogin}
-            onSwitchToSignup={handleSwitchToSignup}
+            onSwitchToSignup={() => { setShowLogin(false); setShowSignup(true); }}
             prefilledEmail={prefilledEmail}
           />
         )}
         
         {showSignup && (
           <Signup 
-            onClose={handleCloseSignup}
+            onClose={() => setShowSignup(false)}
             onSignup={handleSignup}
-            onSwitchToLogin={handleSwitchToLogin}
+            onSwitchToLogin={() => { setShowSignup(false); setShowLogin(true); }}
             prefilledEmail={prefilledEmail}
           />
         )}
@@ -112,17 +94,32 @@ function App() {
           <Route path="/browse" element={<Browse />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+
           <Route 
-            path="/create-listing" 
-            element={isAuthenticated && user?.role !== 'admin' ? <BusinessForm /> : <Navigate to="/" />} 
+            path="/create-listing"
+            element={
+              <ProtectedRoute role="user">
+                <BusinessForm />
+              </ProtectedRoute>
+            }
           />
+
           <Route 
-            path="/dashboard" 
-            element={isAuthenticated && user?.role !== 'admin' ? <Dashboard /> : <Navigate to="/" />} 
+            path="/dashboard"
+            element={
+              <ProtectedRoute role="user">
+                <Dashboard />
+              </ProtectedRoute>
+            }
           />
+
           <Route 
-            path="/admin" 
-            element={isAuthenticated && user?.role === 'admin' ? <AdminDashboard /> : <Navigate to="/" />} 
+            path="/admin"
+            element={
+              <ProtectedRoute role="admin">
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
           />
         </Routes>
       </div>
