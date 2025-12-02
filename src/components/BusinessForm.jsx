@@ -134,7 +134,7 @@ function BusinessForm() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="phone">Phone Number *</label>
+              <label htmlFor="phone">Phone Number With Country Code *</label>
               <input
                 type="tel"
                 id="phone"

@@ -10,6 +10,9 @@ function ContactFormModal({ business, onClose, onSuccess }) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Google Apps Script Web App URL
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz7InC3YOIUaFofyYSJKDazRsi_JaaxpW5Bwocd97qR5b-3Ay6NnZ2azIgfFrPFQpHVpw/exec';
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -47,7 +50,29 @@ function ContactFormModal({ business, onClose, onSuccess }) {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const sendToGoogleSheets = async (contactData) => {
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Important for Google Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactData)
+      });
+      
+      // Note: no-cors mode doesn't allow reading the response
+      // but the data will still be saved
+      console.log('Data sent to Google Sheets');
+      return true;
+      
+    } catch (error) {
+      console.error('Error sending to Google Sheets:', error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const newErrors = validateForm();
@@ -58,7 +83,7 @@ function ContactFormModal({ business, onClose, onSuccess }) {
     
     setIsSubmitting(true);
     
-    // Prepare data for Excel
+    // Prepare data for Google Sheets
     const contactData = {
       timestamp: new Date().toLocaleString(),
       businessName: business.businessName,
@@ -69,16 +94,16 @@ function ContactFormModal({ business, onClose, onSuccess }) {
       businessPhone: business.phone
     };
     
-    // Log to console (you'll connect this to Excel)
+    // Send to Google Sheets
+    await sendToGoogleSheets(contactData);
+    
+    // Still log to console for debugging
     console.log('=== CONTACT FORM SUBMISSION ===');
     console.log(contactData);
     console.log('================================');
     
-    // Simulate submission delay
-    setTimeout(() => {
-      setIsSubmitting(false);
-      onSuccess(business.phone);
-    }, 1000);
+    setIsSubmitting(false);
+    onSuccess(business.phone);
   };
 
   return (

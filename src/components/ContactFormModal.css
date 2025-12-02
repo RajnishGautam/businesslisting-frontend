@@ -13,32 +13,24 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .contact-modal {
-  background-color: white;
+  background-color: #fff;
   border-radius: 20px;
   width: 90%;
   max-width: 500px;
   position: relative;
   animation: slideUp 0.3s ease;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .contact-close-btn {
@@ -55,6 +47,9 @@
   transition: all 0.3s ease;
   z-index: 10;
   color: #e70707;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-close-btn:hover {
@@ -85,18 +80,20 @@
 
 .contact-form {
   padding: 30px;
-  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .contact-form-group {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-form-group label {
-  display: block;
   font-weight: 600;
   color: #333;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-size: 14px;
 }
 
@@ -106,8 +103,8 @@
   border: 2px solid #e0e0e0;
   border-radius: 10px;
   font-size: 15px;
-  transition: all 0.3s ease;
   font-family: inherit;
+  transition: all 0.3s ease;
 }
 
 .contact-form-group input:focus {
@@ -125,7 +122,6 @@
 }
 
 .error-text {
-  display: block;
   color: #ff4757;
   font-size: 13px;
   margin-top: 5px;
@@ -136,7 +132,7 @@
   width: 100%;
   padding: 16px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 12px;
   font-size: 17px;
@@ -164,25 +160,56 @@
   color: #b71d1d;
   font-size: 13px;
   margin: 20px 0 0;
-  padding: 15px;
+  padding: 12px;
   background-color: #f8f9fa;
   border-radius: 8px;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .contact-modal {
     width: 95%;
   }
-  
+
   .contact-modal-header {
     padding: 30px 20px 20px;
   }
-  
+
   .contact-modal-header h2 {
     font-size: 22px;
   }
-  
+
   .contact-form {
     padding: 20px;
+  }
+
+  .contact-submit-btn {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .contact-modal-header p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-modal-header h2 {
+    font-size: 20px;
+  }
+
+  .contact-form-group input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .contact-submit-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .contact-note {
+    font-size: 12px;
+    padding: 10px;
   }
 }

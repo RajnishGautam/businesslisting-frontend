@@ -129,7 +129,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h2>My Business Dashboard</h2>
+        <h2>Business Dashboard</h2>
         {!isEditing && (
           <button className="edit-button" onClick={() => setIsEditing(true)}>
             Edit Listing
