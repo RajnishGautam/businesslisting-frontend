@@ -5,6 +5,10 @@ import './Dashboard.css'
 
 function Dashboard() {
   const navigate = useNavigate()
+
+  const [authToken, setAuthToken] = useState(null)
+  const [checkingAuth, setCheckingAuth] = useState(true)
+
   const [business, setBusiness] = useState(null)
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({
@@ -22,15 +26,28 @@ function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [updating, setUpdating] = useState(false)
 
+  // Load token first
   useEffect(() => {
-    fetchBusiness()
+    const saved = localStorage.getItem('token')
+    if (!saved) {
+      navigate('/')
+      return
+    }
+    setAuthToken(saved)
+    setCheckingAuth(false)
   }, [])
+
+  // Fetch business only after token is ready
+  useEffect(() => {
+    if (!checkingAuth && authToken) {
+      fetchBusiness()
+    }
+  }, [checkingAuth, authToken])
 
   const fetchBusiness = async () => {
     try {
-      const token = localStorage.getItem('token')
       const res = await api.get('/api/business/my-business', {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${authToken}` }
       })
 
       if (res.data) {
@@ -82,9 +99,8 @@ function Dashboard() {
     setError('')
 
     try {
-      const token = localStorage.getItem('token')
       const res = await api.put(`/api/business/${business._id}`, formData, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${authToken}` }
       })
 
       setBusiness(res.data.business)
@@ -102,7 +118,7 @@ function Dashboard() {
     setError('')
   }
 
-  if (loading) {
+  if (checkingAuth || loading) {
     return (
       <div className="dashboard-container">
         <div className="loading">Loading...</div>
@@ -125,6 +141,7 @@ function Dashboard() {
 
       {isEditing ? (
         <form onSubmit={handleUpdate} className="edit-form">
+
           <div className="form-row">
             <div className="form-group">
               <label>Business Name</label>
@@ -233,6 +250,7 @@ function Dashboard() {
               Cancel
             </button>
           </div>
+
         </form>
       ) : (
         <>
@@ -277,7 +295,9 @@ function Dashboard() {
 
               <div className="rating-summary">
                 <div className="rating-box">
-                  <span className="rating-number">{business.averageRating.toFixed(1)}</span>
+                  <span className="rating-number">
+                    {business.averageRating.toFixed(1)}
+                  </span>
                   <span className="rating-label">Average Rating</span>
                 </div>
 
