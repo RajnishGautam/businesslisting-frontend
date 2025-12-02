@@ -75,7 +75,7 @@ function GrowSection({ onGetStarted = null }) {
 
       <div className="growRight">
         <img
-          src="/yourImage.png"
+          src="/YourImage.jpeg"
           alt="promo"
           className="growImg"
         />
