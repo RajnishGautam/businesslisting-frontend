@@ -1,0 +1,211 @@
+/* Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+  z-index: 9999;
+}
+
+/* Modal Box */
+.business-detail-modal {
+  background: white;
+  width: 100%;
+  max-width: 750px;
+  border-radius: 14px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 8px 26px rgba(0,0,0,0.12);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #444;
+  transition: 0.2s;
+}
+
+.modal-close-btn:hover {
+  color: #000;
+}
+
+/* Section Titles */
+.modal-body h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+/* Rating Form Section */
+.rating-form-section {
+  background: #f8f9fc;
+  border: 1px solid #e5e7eb;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.rating-input label,
+.comment-input label {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.stars-input {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+/* Stars */
+.star-icon {
+  font-size: 22px;
+  color: #ccc;
+  cursor: default;
+  transition: 0.2s;
+}
+
+.star-icon.filled {
+  color: #ffb400;
+}
+
+.star-icon.interactive {
+  cursor: pointer;
+}
+
+.star-icon.interactive:hover {
+  transform: scale(1.2);
+}
+
+/* Comment Textarea */
+.comment-input textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  resize: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.comment-input textarea:focus {
+  border-color: #888;
+}
+
+/* Buttons */
+.rating-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.submit-rating-btn {
+  background: #2563eb;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.submit-rating-btn:hover {
+  background: #1e4fcf;
+}
+
+.delete-rating-btn {
+  background: #ef4444;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.delete-rating-btn:hover {
+  background: #dc2626;
+}
+
+/* Login Prompt */
+.login-prompt {
+  text-align: center;
+  background: #fff8e6;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #f5d48f;
+  margin-bottom: 20px;
+  color: #8a6d3b;
+  font-size: 15px;
+}
+
+/* Reviews Section */
+.reviews-section {
+  margin-top: 20px;
+}
+
+.no-reviews {
+  color: #777;
+  font-size: 15px;
+  padding-left: 4px;
+}
+
+/* Review Item */
+.review-item {
+  background: #fafafa;
+  border: 1px solid #ebebeb;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reviewer-info strong {
+  font-size: 15px;
+  color: #222;
+}
+
+.review-date {
+  font-size: 13px;
+  color: #666;
+  margin-left: 6px;
+}
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.review-comment {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

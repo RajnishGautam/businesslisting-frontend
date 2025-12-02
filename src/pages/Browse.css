@@ -1,0 +1,473 @@
+.browse-container {
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 40px 100px 60px;
+}
+
+.browse-header {
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.browse-title {
+  color: #333;
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.browse-subtitle {
+  color: #666;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.browse-filters {
+  max-width: 1000px;
+  /* margin: 0 auto 40px; */
+  margin: 0 0 40px 0;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.filters-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.browse-search-input,
+.browse-select {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+.browse-search-input:focus,
+.browse-select:focus {
+  outline: none;
+  border-color: #667eea;
+  background-color: white;
+}
+
+.browse-clear-btn {
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.browse-clear-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+}
+
+.browse-clear-btn-large {
+  padding: 16px 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.browse-clear-btn-large:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.results-count {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.results-count span {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.filter-tag {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-remove {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.25s ease;
+}
+
+.filter-remove:hover {
+  background: rgba(237, 5, 5, 0.45);
+  transform: scale(1.1);
+}
+
+.browse-loading,
+.browse-no-results {
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
+  font-size: 20px;
+}
+
+.browse-no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.browse-list {
+  max-width: 800px;
+  /* margin: 0 auto; */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Card Design - Exact Match */
+.browse-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  height: 180px;
+}
+
+/* Left Image Section - Exact sizing */
+.browse-card-image-wrapper {
+  position: relative;
+  width: 220px;
+  min-width: 220px;
+  background: #f8f9fa;
+  overflow: hidden;
+}
+
+.browse-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Badges - Exact positioning */
+.browse-verified-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #007;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.browse-trending-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 152, 0, 0.95);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Right Content Section - Exact spacing */
+.browse-card-content {
+  flex: 1;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header Section */
+.browse-card-header {
+  flex: 1;
+}
+
+.browse-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Business Name - Exact styling */
+.browse-business-name {
+  color: #1a1a1a;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.browse-category-icon {
+  font-size: 22px;
+}
+
+/* Rating Section - Exact match */
+.browse-rating-reviews {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.browse-rating-badge {
+  background: #007A0C;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.browse-reviews-count {
+  color: #626161;
+  font-size: 16px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.browse-reviews-count:hover {
+  color: #000;
+  
+}
+
+/* Location Row - Exact spacing */
+.browse-info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000000;
+  font-size: 16px;
+  margin: 2px 0;
+}
+
+.browse-info-icon {
+  font-size: 14px;
+  color: #000000;
+}
+
+/* Action Buttons - Exact layout */
+.browse-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.browse-action-btn {
+  flex: 1;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  gap: 6px;
+  border: none;
+  white-space: nowrap;
+}
+
+/* Phone Button - Green */
+.browse-phone-btn {
+  background: #007A0C;
+  color: white;
+  flex: 1.2;
+}
+
+.browse-phone-btn:hover:not(.revealed) {
+  background: #007A0C;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.browse-phone-btn.revealed {
+  background: #007A0C;
+  cursor: default;
+}
+
+.browse-phone-btn.revealed:hover {
+  background: #007A0C;
+  transform: none;
+  box-shadow: none;
+}
+
+/* WhatsApp Button */
+
+.browse-action-btn.browse-whatsapp-btn {
+  text-decoration: none; /* removes underline */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #007A0C; /* WhatsApp green */
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: normal;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.browse-action-btn.browse-whatsapp-btn:hover {
+  background-color: #007A0C; /* darker green on hover */
+  
+}
+
+.browse-action-btn.browse-whatsapp-btn svg {
+  font-size: 18px;
+}
+
+/* Enquiry Button - Blue */
+.browse-enquiry-btn {
+  background: #0076D7;
+  color: white;
+  flex: 1;
+}
+
+.browse-enquiry-btn:hover {
+  background: #1976D2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+  .browse-container {
+    padding: 40px 20px 60px;
+  }
+
+  .browse-card {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .browse-card-image-wrapper {
+    width: 100%;
+    height: 200px;
+  }
+
+  .browse-card-content {
+    padding: 20px;
+  }
+
+  .browse-business-name {
+    font-size: 20px;
+  }
+
+  .browse-card-actions {
+    flex-wrap: wrap;
+  }
+
+  .browse-action-btn {
+    flex: 1 1 calc(50% - 5px);
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .browse-title {
+    font-size: 32px;
+  }
+
+  .browse-subtitle {
+    font-size: 16px;
+  }
+
+  .browse-filters {
+    padding: 20px;
+  }
+
+  .filters-row {
+    flex-direction: column;
+  }
+
+  .browse-search-input,
+  .browse-select,
+  .browse-clear-btn {
+    width: 100%;
+  }
+
+  .browse-card-image-wrapper {
+    height: 180px;
+  }
+
+  .browse-card-actions {
+    flex-direction: column;
+  }
+
+  .browse-action-btn {
+    width: 100%;
+  }
+}
