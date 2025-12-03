@@ -111,7 +111,7 @@
   padding: 14px;
   border-radius: 8px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: normal;
   cursor: pointer;
   transition: transform 0.3s ease, opacity 0.2s ease;
   margin-top: 5px;

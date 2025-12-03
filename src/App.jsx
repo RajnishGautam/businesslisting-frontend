@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Browse from './pages/Browse';
 import About from './pages/About';
-import Contact from './pages/Contact';
+import ContactPage from './pages/Contact';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import BusinessForm from './components/BusinessForm';
@@ -93,7 +93,7 @@ function App() {
           <Route path="/" element={<Home onGetStarted={handleGetStarted} />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<ContactPage />} />
 
           <Route 
             path="/create-listing"
