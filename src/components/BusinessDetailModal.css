@@ -452,8 +452,8 @@
 .modal-close-btn:focus,
 .submit-rating-btn:focus,
 .delete-rating-btn:focus {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
+  outline: none;
+  outline-offset: none;
 }
 
 .star-icon.interactive:focus {

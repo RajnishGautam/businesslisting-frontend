@@ -265,12 +265,12 @@ function Browse() {
               {/* Left Image Section */}
               <div className="browse-card-image-wrapper">
                 <img
-  src={business.image}
-  alt={business.businessName}
-  loading="lazy"
-  className="browse-card-image"
-  onLoad={(e) => e.target.classList.add("loaded")}
-/>
+                  src={business.image}
+                  alt={business.businessName}
+                  loading="lazy"
+                  className="browse-card-image"
+                  onLoad={(e) => e.target.classList.add("loaded")}
+                />
                 <span className="browse-verified-badge">
                   <FaCheckCircle /> verified
                 </span>

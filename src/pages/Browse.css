@@ -59,9 +59,11 @@
 .browse-search-input:focus,
 .browse-select:focus {
   outline: none;
+  box-shadow: none;
   border-color: #667eea;
   background-color: white;
 }
+
 
 .browse-clear-btn {
   padding: 14px 30px;
@@ -70,7 +72,7 @@
   border: none;
   border-radius: 10px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: normal;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
@@ -78,7 +80,7 @@
 
 .browse-clear-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+  
 }
 
 .browse-clear-btn-large {
