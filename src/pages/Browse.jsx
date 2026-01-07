@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import api from "../api"
+import BrowseSkeleton from "../components/BrowseSkeleton";
+import api from "../api";
 import {
   FaPhone,
   FaWhatsapp,
@@ -240,7 +241,11 @@ function Browse() {
       </div>
 
       {loading ? (
-        <div className="browse-loading">Loading businesses...</div>
+        <div className="browse-list">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <BrowseSkeleton key={i} />
+          ))}
+        </div>
       ) : filteredBusinesses.length === 0 ? (
         <div className="browse-no-results">
           <p>No businesses found matching your criteria</p>
@@ -260,10 +265,12 @@ function Browse() {
               {/* Left Image Section */}
               <div className="browse-card-image-wrapper">
                 <img
-                  src={business.image}
-                  alt={business.businessName}
-                  className="browse-card-image"
-                />
+  src={business.image}
+  alt={business.businessName}
+  loading="lazy"
+  className="browse-card-image"
+  onLoad={(e) => e.target.classList.add("loaded")}
+/>
                 <span className="browse-verified-badge">
                   <FaCheckCircle /> verified
                 </span>
