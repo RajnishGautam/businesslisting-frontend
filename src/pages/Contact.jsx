@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -6,58 +6,56 @@ import {
   FaLinkedin,
   FaEnvelope,
   FaMapMarkerAlt,
-} from 'react-icons/fa'
+} from "react-icons/fa";
 
-
-import './Contact.css'
+import "./Contact.css";
 
 const ContactPage = () => {
-  
-  const [showSuccess, setShowSuccess] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const formData = new FormData(e.target)
-    const name = formData.get('name').trim()
-    const email = formData.get('email').trim()
-    const phone = formData.get('phone').trim().replace(/\s+/g, '')
-    const message = formData.get('message').trim()
+    const formData = new FormData(e.target);
+    const name = formData.get("name").trim();
+    const email = formData.get("email").trim();
+    const phone = formData.get("phone").trim().replace(/\s+/g, "");
+    const message = formData.get("message").trim();
 
     // Basic validation
     if (!name || !email || !phone) {
-      alert('Please fill all required fields: Name, Email, and Phone Number.')
-      return
+      alert("Please fill all required fields: Name, Email, and Phone Number.");
+      return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      alert('Please enter a valid email address.')
-      return
+      alert("Please enter a valid email address.");
+      return;
     }
 
-    const phoneRegex = /^(\+?\d{1,3}[- ]?)?\d{10}$/
+    const phoneRegex = /^(\+?\d{1,3}[- ]?)?\d{10}$/;
     if (!phoneRegex.test(phone)) {
-      alert('Please enter a valid phone number with optional country code.')
-      return
+      alert("Please enter a valid phone number with optional country code.");
+      return;
     }
 
     // Show success message immediately
-    setShowSuccess(true)
-    e.target.reset()
-    setTimeout(() => setShowSuccess(false), 3000)
+    setShowSuccess(true);
+    e.target.reset();
+    setTimeout(() => setShowSuccess(false), 3000);
 
     // Send data to Google Apps Script (no-cors, same as HeroWithVideo)
     fetch(
-      'https://script.google.com/macros/s/AKfycbygkQxRpUJv5yPshUjb7AFc10G6PU8vF6IO77iP0K9t417DNhXLwgf2ZaC2XB0sgE6rZA/exec',
+      "https://script.google.com/macros/s/AKfycbygkQxRpUJv5yPshUjb7AFc10G6PU8vF6IO77iP0K9t417DNhXLwgf2ZaC2XB0sgE6rZA/exec",
       {
-        method: 'POST',
-        mode: 'no-cors',
+        method: "POST",
+        mode: "no-cors",
         body: JSON.stringify({ name, email, phone, message }),
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       }
-    ).catch((err) => console.error('Error sending form data:', err))
-  }
+    ).catch((err) => console.error("Error sending form data:", err));
+  };
 
   return (
     <div className="contact-page">
@@ -102,7 +100,9 @@ const ContactPage = () => {
                 <div>
                   <h4>Email</h4>
                   <h5>
-                    <a href="mailto:hello@dDotit.com">support@7dotit.solutions</a>
+                    <a href="mailto:hello@dDotit.com">
+                      support@7dotit.solutions
+                    </a>
                   </h5>
                 </div>
               </div>
@@ -112,11 +112,9 @@ const ContactPage = () => {
                 <div>
                   <h4>Office</h4>
                   <h5>
-                    
-                      SCO 2/3 IT Park, Chandigarh,
-                      <br />
-                      (Panchkula)
-                    
+                    SCO 2/3 IT Park, Chandigarh,
+                    <br />
+                    (Panchkula)
                   </h5>
                 </div>
               </div>
@@ -128,31 +126,34 @@ const ContactPage = () => {
               <div className="social-links">
                 <a
                   href="https://www.facebook.com/share/1CRjRz1M3j/"
-                  className="social-link"
+                  className="social-link facebook"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <FaFacebookF />
                 </a>
+
                 <a
                   href="https://www.instagram.com/7dot_it_solutions?igsh=MTNpMHozYm13cHd0aA=="
-                  className="social-link"
+                  className="social-link instagram"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <FaInstagram />
                 </a>
+
                 <a
                   href="https://wa.me/917838649867"
-                  className="social-link"
+                  className="social-link whatsapp"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <FaWhatsapp />
                 </a>
+
                 <a
                   href="https://www.linkedin.com/company/7dot-it-soln/"
-                  className="social-link"
+                  className="social-link linkedin"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -217,9 +218,8 @@ const ContactPage = () => {
       </section>
 
       {/* Map Section */}
-      
     </div>
-  )
-}
+  );
+};
 
-export default ContactPage
+export default ContactPage;

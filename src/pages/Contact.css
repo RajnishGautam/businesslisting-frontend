@@ -2,14 +2,14 @@
 .contact-page {
   width: 100%;
   background-color: var(--bg-color);
-  font-family: 'Sarabun', sans-serif;
+  font-family: "Sarabun", sans-serif;
   overflow-x: hidden;
 }
 
 /* Header Section */
 .contact-header {
   padding: 80px 20px 20px;
-  background-color: #8e1616;
+  background: var(--bg-color);
   text-align: center;
   position: relative;
 }
@@ -20,18 +20,18 @@
 }
 
 .contact-title {
-  font-family: 'Sarabun', sans-serif;
+  font-family: "Sarabun", sans-serif;
   font-size: 1.5rem;
   font-weight: normal;
   color: var(--text-color);
   text-transform: uppercase;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
 }
 
 .contact-subtitle {
-  font-family: 'Sarabun', sans-serif;
+  font-family: "Sarabun", sans-serif;
   font-size: 1.5rem;
   color: var(--text-color);
   opacity: 0.8;
@@ -63,7 +63,7 @@
 }
 
 .contact-info h2 {
-  font-family: 'sarabun',sans-serif;
+  font-family: "sarabun", sans-serif;
   font-size: 1.8rem;
   color: var(--text-color);
   margin-bottom: 20px;
@@ -71,7 +71,7 @@
 }
 
 .contact-info > p {
-  font-family: 'sarabun',sans-serif;
+  font-family: "sarabun", sans-serif;
   font-size: 1rem;
   color: #111111;
   opacity: 0.8;
@@ -99,7 +99,7 @@
 }
 
 .contact-item h4 {
-  font-family: 'sarabun';
+  font-family: "sarabun";
   font-size: 1rem;
   color: #000000;
   margin-bottom: 2px;
@@ -111,7 +111,7 @@
   line-height: 1;
 }
 .contact-item p {
-  font-family: 'sarabun';
+  font-family: "sarabun";
   font-size: 1rem;
   color: var(--text-color);
   opacity: 0.8;
@@ -137,12 +137,11 @@
 }
 
 .social-media h4 {
-  
   font-size: 1rem;
   color: var(--text-color);
   margin-bottom: 20px;
   font-weight: normal;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
 }
 
 .social-links {
@@ -162,12 +161,33 @@
   font-size: 18px;
   transition: all 0.3s ease;
   text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
 }
 
-.social-link:hover {
-  background-color: #9399f0;
-  color: white;
-  transform: translateY(-2px);
+.social-link.facebook:hover {
+  background-color: #1877f2;
+  color: #ffffff;
+}
+
+.social-link.instagram:hover {
+  background: radial-gradient(
+    circle at 30% 30%,
+    #feda75,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+  color: #ffffff;
+}
+
+.social-link.whatsapp:hover {
+  background-color: #25d366;
+  color: #ffffff;
+}
+
+.social-link.linkedin:hover {
+  background-color: #0a66c2;
+  color: #ffffff;
 }
 
 /* Contact Form Section */
@@ -182,7 +202,7 @@
 }
 
 .form-header h3 {
-  font-family: 'sarabun',sans-serif;
+  font-family: "sarabun", sans-serif;
   font-size: 1.8rem;
   color: var(--text-color);
   margin-bottom: 10px;
@@ -190,7 +210,7 @@
 }
 
 .form-header p {
-  font-family: 'sarabun',sans-serif;
+  font-family: "sarabun", sans-serif;
   font-size: 1rem;
   color: #111111;
   opacity: 0.8;
@@ -216,7 +236,7 @@
   padding: 10px 20px;
   border: 1px solid #111;
   border-radius: 12px;
-  font-family: 'sarabun';
+  font-family: "sarabun";
   font-size: 16px;
   color: #000;
   outline: none;
@@ -239,7 +259,7 @@
 .submit-button {
   padding: 16px 32px;
   color: white;
-  font-family: 'sarabun',sans-serif;
+  font-family: "sarabun", sans-serif;
   font-size: 16px;
   font-weight: 500;
   border: none;
@@ -252,7 +272,7 @@
 
 .submit-button:hover {
   background-color: #a03a2a;
-  
+
   box-shadow: none;
 }
 
@@ -264,7 +284,7 @@
   color: white;
   padding: 16px 20px;
   border-radius: 12px;
-  font-family: 'sarabun';
+  font-family: "sarabun";
   font-weight: normal;
   animation: fadeInOut 3s ease-in-out;
   z-index: 9999; /* stay above everything */
@@ -305,7 +325,6 @@
     transform: translateY(-10px);
   }
 }
-
 
 /* Responsive Design */
 @media (max-width: 1024px) {
@@ -392,5 +411,4 @@
   .social-links {
     justify-content: center;
   }
- 
 }

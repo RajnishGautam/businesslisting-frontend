@@ -18,7 +18,6 @@ import {
   FaBuilding,
   FaBriefcase,
 } from "react-icons/fa";
-import BusinessDetailModal from "../components/BusinessDetailModal";
 import ContactFormModal from "../components/ContactFormModal";
 import "./Browse.css";
 
@@ -38,7 +37,6 @@ function Browse() {
     searchParams.get("city") || ""
   );
   const [loading, setLoading] = useState(true);
-  const [selectedBusiness, setSelectedBusiness] = useState(null);
   const [showContactForm, setShowContactForm] = useState(null);
   const [revealedPhones, setRevealedPhones] = useState({});
   const [availableCities, setAvailableCities] = useState([]);
@@ -112,15 +110,25 @@ function Browse() {
     setSearchParams({});
   };
 
-  const handleReviewClick = (business) => {
-    setSelectedBusiness(business);
+  const handleBusinessClick = (businessId) => {
+    navigate(`/business/${businessId}`);
   };
 
-  const handlePhoneClick = (business) => {
+  const handlePhoneClick = (e, business) => {
+    e.stopPropagation(); // Stop event propagation
     if (revealedPhones[business._id]) {
       return;
     }
     setShowContactForm(business);
+  };
+
+  const handleWhatsAppClick = (e) => {
+    e.stopPropagation(); // Stop event propagation
+  };
+
+  const handleEnquiryClick = (e, business) => {
+    e.stopPropagation(); // Stop event propagation
+    navigate(`/business/${business._id}`);
   };
 
   const handleContactSuccess = (phone) => {
@@ -129,11 +137,6 @@ function Browse() {
       [showContactForm._id]: phone,
     }));
     setShowContactForm(null);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedBusiness(null);
-    fetchBusinesses();
   };
 
   const categories = [
@@ -261,7 +264,12 @@ function Browse() {
       ) : (
         <div className="browse-list">
           {filteredBusinesses.map((business) => (
-            <div key={business._id} className="browse-card">
+            <div
+              key={business._id}
+              className="browse-card"
+              onClick={() => handleBusinessClick(business._id)}
+              style={{ cursor: "pointer" }}
+            >
               {/* Left Image Section */}
               <div className="browse-card-image-wrapper">
                 <img
@@ -297,12 +305,9 @@ function Browse() {
                         <div className="browse-rating-badge">
                           {(business.averageRating || 0).toFixed(1)} <FaStar />
                         </div>
-                        <button
-                          className="browse-reviews-count"
-                          onClick={() => handleReviewClick(business)}
-                        >
+                        <span className="browse-reviews-count">
                           {business.totalRatings || 0} Ratings
-                        </button>
+                        </span>
                       </div>
 
                       <div className="browse-info-row">
@@ -321,7 +326,7 @@ function Browse() {
                     className={`browse-action-btn browse-phone-btn ${
                       revealedPhones[business._id] ? "revealed" : ""
                     }`}
-                    onClick={() => handlePhoneClick(business)}
+                    onClick={(e) => handlePhoneClick(e, business)}
                   >
                     <FaPhone />
                     {revealedPhones[business._id] || "View Phone Number"}
@@ -335,6 +340,7 @@ function Browse() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="browse-action-btn browse-whatsapp-btn"
+                      onClick={handleWhatsAppClick}
                     >
                       <FaWhatsapp />
                       WhatsApp
@@ -343,7 +349,7 @@ function Browse() {
 
                   <button
                     className="browse-action-btn browse-enquiry-btn"
-                    onClick={() => handleReviewClick(business)}
+                    onClick={(e) => handleEnquiryClick(e, business)}
                   >
                     <FaEnvelope />
                     Send Enquiry
@@ -353,13 +359,6 @@ function Browse() {
             </div>
           ))}
         </div>
-      )}
-
-      {selectedBusiness && (
-        <BusinessDetailModal
-          business={selectedBusiness}
-          onClose={handleCloseModal}
-        />
       )}
 
       {showContactForm && (

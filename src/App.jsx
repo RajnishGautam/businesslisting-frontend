@@ -11,6 +11,7 @@ import BusinessForm from './components/BusinessForm';
 import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
 import ProtectedRoute from './ProtectedRoute';
+import BusinessDetail from './pages/BusinessDetail';
 import './App.css';
 
 function App() {
@@ -94,6 +95,7 @@ function App() {
           <Route path="/browse" element={<Browse />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/business/:id" element={<BusinessDetail />} />
 
           <Route 
             path="/create-listing"
