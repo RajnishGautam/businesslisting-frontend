@@ -21,17 +21,19 @@ import {
   FaUser,
 } from "react-icons/fa";
 import ContactFormModal from "../components/ContactFormModal";
+import BusinessDetailModal from "../components/BusinessDetailModal";
 import "./BusinessDetail.css";
 
 function BusinessDetail() {
   const { city, category, name } = useParams();
   const navigate = useNavigate();
-  
+
   const [business, setBusiness] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [revealedPhone, setRevealedPhone] = useState(false);
   const [showContactForm, setShowContactForm] = useState(null);
+  const [showRatingModal, setShowRatingModal] = useState(false);
 
   useEffect(() => {
     fetchBusinessDetail();
@@ -41,7 +43,9 @@ function BusinessDetail() {
     try {
       setLoading(true);
       setError(null);
-      const response = await api.get(`/api/business/${city}/${category}/${name}`);
+      const response = await api.get(
+        `/api/business/${city}/${category}/${name}`
+      );
       setBusiness(response.data);
     } catch (err) {
       if (err.response?.status === 404) {
@@ -133,10 +137,7 @@ function BusinessDetail() {
   return (
     <div className="business-detail-container">
       <div className="business-detail-content">
-        <button
-          onClick={() => navigate("/business")}
-          className="back-button"
-        >
+        <button onClick={() => navigate("/business")} className="back-button">
           <FaArrowLeft /> Back to Browse
         </button>
 
@@ -148,7 +149,7 @@ function BusinessDetail() {
               className="hero-image"
             />
             <div className="hero-overlay"></div>
-            
+
             <div className="hero-badges">
               <span className="verified-badge">
                 <FaCheckCircle /> Verified
@@ -169,15 +170,22 @@ function BusinessDetail() {
                   {business.category}
                 </span>
               </div>
+
               <h1 className="business-title">{business.businessName}</h1>
+
               <div className="rating-section">
                 <div className="rating-badge-large">
                   <FaStar />
                   <span>{(business.averageRating || 0).toFixed(1)}</span>
                 </div>
-                <span className="ratings-text">
+
+                <button
+                  type="button"
+                  className="ratings-text"
+                  onClick={() => setShowRatingModal(true)}
+                >
                   {business.totalRatings || 0} Ratings
-                </span>
+                </button>
               </div>
             </div>
           </div>
@@ -193,6 +201,7 @@ function BusinessDetail() {
                   </p>
                 </div>
               </div>
+
               <div className="info-card">
                 <FaClock className="info-icon" />
                 <div>
@@ -257,9 +266,11 @@ function BusinessDetail() {
                           <span>{rating.rating}</span>
                         </div>
                       </div>
+
                       {rating.comment && (
                         <p className="review-comment">{rating.comment}</p>
                       )}
+
                       <p className="review-date">
                         {formatDate(rating.createdAt)}
                       </p>
@@ -277,6 +288,13 @@ function BusinessDetail() {
           business={showContactForm}
           onClose={() => setShowContactForm(null)}
           onSuccess={handleContactSuccess}
+        />
+      )}
+
+      {showRatingModal && (
+        <BusinessDetailModal
+          business={business}
+          onClose={() => setShowRatingModal(false)}
         />
       )}
     </div>

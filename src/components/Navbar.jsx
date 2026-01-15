@@ -24,7 +24,7 @@ function Navbar({ isAuthenticated, onLoginClick, onSignupClick, onLogout, user }
         <div className="navbar-content">
           <div className="logo">
             <NavLink to="/" className="logo-link">
-              <span className="logo-text">BizList</span>
+              <span className="logo-text">BizzLists</span>
             </NavLink>
           </div>
 
@@ -41,7 +41,7 @@ function Navbar({ isAuthenticated, onLoginClick, onSignupClick, onLogout, user }
             )}
             
             {isAuthenticated && user?.role !== 'admin' && (
-              <NavLink to="/dashboard" className={getNavLinkClass}>Dashboard</NavLink>
+              <NavLink to="/dashboard" className={getNavLinkClass}>Free Listing</NavLink>
             )}
           </div>
 
