@@ -4,14 +4,14 @@ import './PopularCategories.css';
 
 function PopularCategories() {
   const categories = [
-    { name: "Restaurant", url: "/browse?category=Restaurant" },
-    { name: "Retail", url: "/browse?category=Retail" },
-    { name: "Technology", url: "/browse?category=Technology" },
-    { name: "Healthcare", url: "/browse?category=Healthcare" },
-    { name: "Education", url: "/browse?category=Education" },
-    { name: "Real Estate", url: "/browse?category=Real+Estate" },
-    { name: "Other", url: "/browse?category=Other" },
-    { name: "Automotive", url: "/browse?category=Automotive" },
+    { name: "Restaurant", url: "/business?category=Restaurant" },
+    { name: "Retail", url: "/business?category=Retail" },
+    { name: "Technology", url: "/business?category=Technology" },
+    { name: "Healthcare", url: "/business?category=Healthcare" },
+    { name: "Education", url: "/business?category=Education" },
+    { name: "Real Estate", url: "/business?category=Real+Estate" },
+    { name: "Other", url: "/business?category=Other" },
+    { name: "Automotive", url: "/business?category=Automotive" },
     // ... add remaining 43 manually
   ];
 

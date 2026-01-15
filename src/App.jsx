@@ -92,10 +92,10 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home onGetStarted={handleGetStarted} />} />
-          <Route path="/browse" element={<Browse />} />
+          <Route path="/business" element={<Browse />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/business/:id" element={<BusinessDetail />} />
+          <Route path="/business/:city/:category/:name" element={<BusinessDetail />} />
 
           <Route 
             path="/create-listing"

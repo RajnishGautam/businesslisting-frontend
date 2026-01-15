@@ -110,12 +110,13 @@ function Browse() {
     setSearchParams({});
   };
 
-  const handleBusinessClick = (businessId) => {
-    navigate(`/business/${businessId}`);
+  const handleBusinessClick = (business) => {
+    // Navigate using slug
+    navigate(`/business/${business.slug}`);
   };
 
   const handlePhoneClick = (e, business) => {
-    e.stopPropagation(); // Stop event propagation
+    e.stopPropagation();
     if (revealedPhones[business._id]) {
       return;
     }
@@ -123,12 +124,12 @@ function Browse() {
   };
 
   const handleWhatsAppClick = (e) => {
-    e.stopPropagation(); // Stop event propagation
+    e.stopPropagation();
   };
 
   const handleEnquiryClick = (e, business) => {
-    e.stopPropagation(); // Stop event propagation
-    navigate(`/business/${business._id}`);
+    e.stopPropagation();
+    navigate(`/business/${business.slug}`);
   };
 
   const handleContactSuccess = (phone) => {
@@ -267,7 +268,7 @@ function Browse() {
             <div
               key={business._id}
               className="browse-card"
-              onClick={() => handleBusinessClick(business._id)}
+              onClick={() => handleBusinessClick(business)}
               style={{ cursor: "pointer" }}
             >
               {/* Left Image Section */}

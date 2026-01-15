@@ -21,10 +21,10 @@ import {
   FaUser,
 } from "react-icons/fa";
 import ContactFormModal from "../components/ContactFormModal";
-import "./BusinessDetail.css"; // Create this CSS file
+import "./BusinessDetail.css";
 
 function BusinessDetail() {
-  const { id } = useParams();
+  const { city, category, name } = useParams();
   const navigate = useNavigate();
   
   const [business, setBusiness] = useState(null);
@@ -35,13 +35,13 @@ function BusinessDetail() {
 
   useEffect(() => {
     fetchBusinessDetail();
-  }, [id]);
+  }, [city, category, name]);
 
   const fetchBusinessDetail = async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await api.get(`/api/business/${id}`);
+      const response = await api.get(`/api/business/${city}/${category}/${name}`);
       setBusiness(response.data);
     } catch (err) {
       if (err.response?.status === 404) {
@@ -117,7 +117,7 @@ function BusinessDetail() {
             <h2>Oops!</h2>
             <p>{error}</p>
             <button
-              onClick={() => navigate("/browse")}
+              onClick={() => navigate("/business")}
               className="back-button-error"
             >
               <FaArrowLeft /> Back to Browse
@@ -134,7 +134,7 @@ function BusinessDetail() {
     <div className="business-detail-container">
       <div className="business-detail-content">
         <button
-          onClick={() => navigate("/browse")}
+          onClick={() => navigate("/business")}
           className="back-button"
         >
           <FaArrowLeft /> Back to Browse

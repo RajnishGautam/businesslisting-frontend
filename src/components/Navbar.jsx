@@ -32,7 +32,7 @@ function Navbar({ isAuthenticated, onLoginClick, onSignupClick, onLogout, user }
             <NavLink to="/" className={getNavLinkClass}>Home</NavLink>
             <NavLink to="/about" className={getNavLinkClass}>About Us</NavLink>
             <NavLink to="/contact" className={getNavLinkClass}>Contact Us</NavLink>
-            <NavLink to="/browse" className={getNavLinkClass}>Browse Listings</NavLink>
+            <NavLink to="/business" className={getNavLinkClass}>Browse Listings</NavLink>
             
             {isAuthenticated && user?.role === 'admin' && (
               <NavLink to="/admin" className={({ isActive }) => isActive ? "nav-link active admin-link" : "nav-link admin-link"}>
@@ -69,7 +69,7 @@ function Navbar({ isAuthenticated, onLoginClick, onSignupClick, onLogout, user }
           <NavLink to="/" className={getMobileLinkClass} onClick={() => setIsOpen(false)}>Home</NavLink>
           <NavLink to="/about" className={getMobileLinkClass} onClick={() => setIsOpen(false)}>About Us</NavLink>
           <NavLink to="/contact" className={getMobileLinkClass} onClick={() => setIsOpen(false)}>Contact Us</NavLink>
-          <NavLink to="/browse" className={getMobileLinkClass} onClick={() => setIsOpen(false)}>Browse Listings</NavLink>
+          <NavLink to="/business" className={getMobileLinkClass} onClick={() => setIsOpen(false)}>Browse Listings</NavLink>
           
           {isAuthenticated && user?.role === 'admin' && (
             <NavLink to="/admin" className={({ isActive }) => isActive ? "mobile-link active" : "mobile-link"} onClick={() => setIsOpen(false)}>
